@@ -7,18 +7,16 @@ $.ajaxPrefilter(function (options) {
   options.url = "http://ajax.frontend.itheima.net" + options.url;
 
   // 统一为有权限的接口,设置 header 请求头
-  if (options.url.indexOf("/my/") !== -1) {
+  if (options.url.indexOf("/my/" !== -1)) {
     options.headers = {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
+      Authorization: localStorage.getItem("token"),
     };
   }
 
   // 全局统一挂载 complete 回调函数
   options.complete = function (res) {
-    console.log("执行了 complete 回调");
-    console.log(res);
+    // console.log("执行了 complete 回调");
+    // console.log(res);
     // 在 complete 回调函数中,可以使用 res.response.JSON 拿到服务器响应回来的数据
     if (
       res.responseJSON.status === 1 &&
